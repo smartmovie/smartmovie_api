@@ -14,4 +14,6 @@ def insert_movie(name,thumb,trailer):
     sql = "insert into movie (moviename,thumbnail,trailer) values ("+"'"+name+"'"+","+"'"+thumb+"'"+","+"'"+trailer+"'"+")"
     cur.execute(sql)
     conn.commit()
-    return "true"
+    return "success"
+
+def insert_user()
