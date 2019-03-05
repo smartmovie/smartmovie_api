@@ -26,6 +26,15 @@ def user_register():
     sts = user_register_obj.insert_users(entry_data['username'],entry_data['email'],entry_data['phone'],entry_data['password'])
     return sts
 
+@app.route('/user_login/',methods=['POST'])
+def user_login():
+    entry_data = request.json
+    user_login_obj = InsertData()
+    sts = user_login_obj.user_login_check(entry_data['username'],entry_data['password'])
+    result = {'value':sts}
+    return jsonify(result)
+
+
 
 if __name__ == "__main__":
     HOST = 'localhost'

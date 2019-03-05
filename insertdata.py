@@ -7,7 +7,6 @@ class InsertData:
         self.cur = self.conn.cursor()
 
     def insert_movie(self,name,thumb,trailer):
-        #cur,conn = connect_database()
         sql = "insert into movie (moviename,thumbnail,trailer) values ("+"'"+name+"'"+","+"'"+thumb+"'"+","+"'"+trailer+"'"+")"
         self.cur.execute(sql)
         self.conn.commit()
@@ -15,12 +14,21 @@ class InsertData:
         return "success"
 
     def insert_users(self,username,email,phone,password):
-        #cur,conn = connect_database()
         sql = "insert into users (username,email,phone,password) values ("+"'"+username+"'"+","+"'"+email+"'"+","+"'"+phone+"'"+","+"'"+password+"'"")"
         self.cur.execute(sql)
         self.conn.commit()
         self.close_connection()
         return "success"
+
+    def user_login_check(self,un,pw):
+        sql = "select exists(select id from users where (username = '{}' or email = '{}' or phone = '{}') and password = '{}' )".format(un,un,un,pw)
+        self.cur.execute(sql)
+        query_result = self.cur.fetchall()
+        self.close_connection()
+        if query_result[0][0] == True:
+            return 'true'
+        else:
+            return 'false'
 
     def close_connection(self):
         self.cur.close()
