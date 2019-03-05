@@ -1,0 +1,42 @@
+-- Table: public.movie
+
+-- DROP TABLE public.movie;
+
+CREATE TABLE public.movie
+(
+    id integer NOT NULL DEFAULT nextval('movie_id_seq'::regclass),
+    moviename character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    thumbnail character varying(1024) COLLATE pg_catalog."default",
+    trailer character varying(1024) COLLATE pg_catalog."default",
+    createdon timestamp without time zone DEFAULT now(),
+    CONSTRAINT movie_pkey PRIMARY KEY (moviename)
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public.movie
+    OWNER to egvknxuh;
+
+
+-- Table: public.movie
+
+-- DROP TABLE public.movie;
+
+CREATE TABLE public.movie
+(
+    id integer NOT NULL DEFAULT nextval('movie_id_seq'::regclass),
+    moviename character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    thumbnail character varying(1024) COLLATE pg_catalog."default",
+    trailer character varying(1024) COLLATE pg_catalog."default",
+    createdon timestamp without time zone DEFAULT now(),
+    CONSTRAINT movie_pkey PRIMARY KEY (moviename)
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public.movie
+    OWNER to egvknxuh;
