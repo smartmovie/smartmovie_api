@@ -6,8 +6,8 @@ class InsertData:
         self.conn = psycopg2.connect("dbname='tagitmnx' user='tagitmnx' host='manny.db.elephantsql.com' password='VTyQvPjzEtgozMnPgKKJ1Uc_czyEbXPK'")
         self.cur = self.conn.cursor()
 
-    def insert_movie(self,name,thumb,trailer):
-        sql = "insert into movie (moviename,thumbnail,trailer) values ("+"'"+name+"'"+","+"'"+thumb+"'"+","+"'"+trailer+"'"+")"
+    def insert_movie(self,name,thumb,trailer,status,type):
+        sql = "insert into movie (moviename,thumbnail,trailer,status,type) values ('{}','{}','{}',{},'{}')".format(name,thumb,trailer,str(status),type)
         self.cur.execute(sql)
         self.conn.commit()
         self.close_connection()
@@ -30,9 +30,21 @@ class InsertData:
         else:
             return 'false'
 
+    def homepage_data_now(self):
+        sql = "select moviename,thumbnail from movie \
+                where status = 1 "
+        self.cur.execute(sql)
+        query_result = self.cur.fetchall()
+        self.close_connection()
+        print(query_result)
+        print(type(query_result))
+        return "hello"
+
+
     def close_connection(self):
         self.cur.close()
         self.conn.close()
+
 
 
 
