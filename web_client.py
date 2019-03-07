@@ -16,7 +16,7 @@ def root():
 def insert_movie_data():
     entry_data = request.json
     insert_movie_obj = InsertData()
-    sts = insert_movie_obj.insert_movie(entry_data['moviename'],entry_data['thumb'],entry_data['trailor'])
+    sts = insert_movie_obj.insert_movie(entry_data['moviename'],entry_data['thumb'],entry_data['trailor'],entry_data['status'],entry_data['type'])
     return sts
 
 @app.route('/user_register/', methods=['POST'])
@@ -33,6 +33,10 @@ def user_login():
     sts = user_login_obj.user_login_check(entry_data['username'],entry_data['password'])
     result = {'value':sts}
     return jsonify(result)
+
+
+
+
 
 
 
