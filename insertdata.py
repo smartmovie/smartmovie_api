@@ -30,15 +30,27 @@ class InsertData:
         else:
             return 'false'
 
-    def homepage_data_now(self):
-        sql = "select moviename,thumbnail from movie \
+    def homepage_movie_data(self):
+        sql_now = "select moviename,type,thumbnail,trailer \
+                from movie \
                 where status = 1 "
-        self.cur.execute(sql)
-        query_result = self.cur.fetchall()
+        sql_next = "select moviename,type,thumbnail,trailer \
+                from movie \
+                where status = 2 "
+        self.cur.execute(sql_now)
+        query_result_now = self.cur.fetchall()
+        self.cur.execute(sql_next)
+        query_result_next = self.cur.fetchall()
         self.close_connection()
-        print(query_result)
-        print(type(query_result))
-        return "hello"
+        list_now = []
+        for i in query_result_now:
+            dict_now = {'movie_name':i[0],'type':i[1],'thumbnail':i[2],'trailer':i[3]}
+            list_now.append(dict_now)
+        list_next = []
+        for i in query_result_next:
+            dict_next = {'movie_name':i[0],'type':i[1],'thumbnail':i[2],'trailer':i[3]}
+            list_next.append(dict_next)
+        return {'movie_now':list_now,'movie_next':list_next}
 
 
     def close_connection(self):

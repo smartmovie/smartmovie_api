@@ -35,8 +35,12 @@ def user_login():
     return jsonify(result)
 
 
-
-
+@app.route('/homepage_movie/',methods=['GET'])
+def homepage_movie():
+    #entry_data = request.json
+    homepage_movie_obj = InsertData()
+    result = homepage_movie_obj.homepage_movie_data()
+    return jsonify(result)
 
 
 
